@@ -1,45 +1,42 @@
-# OpenAI 채팅 어시스턴트
+# Speech Macro
 
-Streamlit과 OpenAI API를 사용한 간단한 채팅 어시스턴트 프로토타입입니다.
+A Streamlit application that helps users generate natural language responses using OpenAI's GPT-3.5-turbo model.
 
-## 설치 방법
+## Features
 
-1. 저장소를 클론합니다:
+- **Extend Reply**: Turn short responses into more natural, extended replies
+- **Reply with Background Information**: Generate personalized responses based on your background
+- **Turn Words into Requests**: Convert simple keywords into natural request phrases
 
-```bash
-git clone <repository-url>
-cd <repository-directory>
+## Implementation
+
+This application is based on the research paper ["The less I type, the better": How AI Language Models can Enhance or Impede Communication for AAC Users](https://doi.org/10.1145/3544548.3581560) by Valencia et al. (2023). The paper explores how AI language models can enhance communication by reducing typing effort while maintaining user agency, which inspired the development of these features to help users craft more natural and personalized responses.
+
+## Setup
+
+1. Clone the repository
+2. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+3. Set up your OpenAI API key:
+   - Create a `.env` file in the root directory
+   - Add your API key: `OPENAI_API_KEY=your_api_key_here`
+
+## Usage
+
+Run the application:
+
 ```
-
-2. 필요한 패키지를 설치합니다:
-
-```bash
-pip install -r requirements.txt
-```
-
-3. `.env` 파일에 OpenAI API 키를 입력합니다:
-
-```
-OPENAI_API_KEY=your_api_key_here
-```
-
-## 실행 방법
-
-다음 명령어로 애플리케이션을 실행합니다:
-
-```bash
 streamlit run app.py
 ```
 
-브라우저에서 자동으로 `http://localhost:8501`이 열립니다.
+## Project Structure
 
-## 주요 기능
-
-- OpenAI의 GPT 모델을 사용한 대화형 인터페이스
-- 스트리밍 응답으로 실시간 답변 확인
-- 대화 기록 유지
-- 직관적인 UI와 사용 안내
-
-## 참고사항
-
-이 앱은 프로토타입이며, 실제 서비스에 사용하기 전에 보안 및 오류 처리 등을 강화해야 합니다.
+- `app.py`: Main application file
+- `features/`: Directory containing feature modules
+  - `extend_reply.py`: Extend Reply feature
+  - `background_reply.py`: Reply with Background Information feature
+  - `keyword_request.py`: Turn Words into Requests feature
+- `utils.py`: Utility functions
+- `requirements.txt`: Project dependencies
