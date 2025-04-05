@@ -27,7 +27,7 @@ Help: {keyword} Phrase:"""
     for _ in range(4):
         try:
             response = client.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=temperature,
                 max_tokens=50,
