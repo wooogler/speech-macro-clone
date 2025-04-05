@@ -2,10 +2,14 @@ import streamlit as st
 from features.extend_reply import show_extend_reply_ui
 from features.background_reply import show_background_reply_ui
 from features.keyword_request import show_keyword_request_ui
+from utils import show_model_selection
 
 # Set page title and configuration
 st.set_page_config(page_title="Speech Macro", page_icon="🎤")
 st.title("Speech Macro")
+
+# Show model selection in sidebar
+show_model_selection()
 
 # Create tabs for different features
 tab1, tab2, tab3 = st.tabs(["Extend Reply", "Reply with Background", "Turn Words into Requests"])

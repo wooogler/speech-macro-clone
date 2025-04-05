@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import get_openai_client
+from utils import get_openai_client, get_selected_model
 
 # Initialize OpenAI client
 client = get_openai_client()
@@ -27,7 +27,7 @@ Help: {keyword} Phrase:"""
     for _ in range(4):
         try:
             response = client.chat.completions.create(
-                model="gpt-4o-mini",
+                model=get_selected_model(),
                 messages=[{"role": "user", "content": prompt}],
                 temperature=temperature,
                 max_tokens=50,
