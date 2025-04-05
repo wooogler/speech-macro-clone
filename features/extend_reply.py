@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import get_openai_client, get_selected_model
+from utils import get_openai_client, get_selected_model, get_model_type
 
 # Initialize OpenAI client
 client = get_openai_client()
@@ -22,19 +22,31 @@ Q: How are you? Input: good A: I'm pretty good. How are you?
 Q: {question} Input: {user_input} A:"""
     
     suggestions = []
+    model = get_selected_model()
+    model_type = get_model_type(model)
     
     # Get 4 suggestions by calling API 4 times
     for _ in range(4):
         try:
-            response = client.chat.completions.create(
-                model=get_selected_model(),
-                messages=[{"role": "user", "content": prompt}],
-                temperature=temperature,
-                max_tokens=100,
-                stop=["Q:", "\n\n"]  # Stop generation at new question or double newline
-            )
+            if model_type == "chat":
+                response = client.chat.completions.create(
+                    model=model,
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=temperature,
+                    max_tokens=100,
+                    stop=["Q:", "\n\n"]  # Stop generation at new question or double newline
+                )
+                suggestion = response.choices[0].message.content.strip()
+            else:  # completion model
+                response = client.completions.create(
+                    model=model,
+                    prompt=prompt,
+                    temperature=temperature,
+                    max_tokens=100,
+                    stop=["Q:", "\n\n"]  # Stop generation at new question or double newline
+                )
+                suggestion = response.choices[0].text.strip()
             
-            suggestion = response.choices[0].message.content.strip()
             suggestions.append(suggestion)
             
         except Exception as e:

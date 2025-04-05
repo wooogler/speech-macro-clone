@@ -6,6 +6,13 @@ from dotenv import load_dotenv
 # Available models
 AVAILABLE_MODELS = ["gpt-4o-mini", "gpt-3.5-turbo", "babbage-002"]
 
+# Model types (chat or completion)
+MODEL_TYPES = {
+    "gpt-4o-mini": "chat",
+    "gpt-3.5-turbo": "chat",
+    "babbage-002": "completion"
+}
+
 # Force reload of environment variables
 def load_api_key():
     """Load and return the OpenAI API key from environment variables or Streamlit secrets"""
@@ -24,6 +31,11 @@ def get_selected_model():
         st.session_state.selected_model = "gpt-4o-mini"
     return st.session_state.selected_model
 
+# Get model type (chat or completion)
+def get_model_type(model_name):
+    """Get the type of model (chat or completion)"""
+    return MODEL_TYPES.get(model_name, "chat")
+
 # Show model selection in sidebar
 def show_model_selection():
     """Display model selection in the sidebar"""
@@ -37,6 +49,10 @@ def show_model_selection():
         )
         st.session_state.selected_model = selected_model
         st.write(f"Current model: **{selected_model}**")
+        
+        # Show model type
+        model_type = get_model_type(selected_model)
+        st.write(f"Model type: **{model_type}**")
 
 # Initialize OpenAI client
 def get_openai_client():
