@@ -91,8 +91,8 @@ A:""")
         st.session_state.bg_submit_trigger = False
     
     # Default values for inputs
-    default_question = "Do you like dancing?"
-    default_background = "I am from Argentina. I really like dancing, horseback-riding and being outdoors."
+    default_question = "Do you like animals?"
+    default_background = "I am from Argentina. I really like dancing, horseback-riding and being outdoors. I do not like insects. I love to eat ceviche, arepas, and tacos. I have a cat named Stella."
 
     # Input fields for Reply with Background with placeholder only (no default values in the field)
     question = st.text_input("Somebody says:", 

@@ -87,8 +87,8 @@ Q: {question} Input: {user_input} A:""")
         st.session_state.extend_submit_trigger = False
     
     # Default values for inputs
-    default_question = "hey how is it going?"
-    default_input = "okay"
+    default_question = "What did you do today?"
+    default_input = "work"
 
     # Input fields for Extend Reply with placeholder only (no default values in the field)
     question = st.text_input("Somebody says:", 
